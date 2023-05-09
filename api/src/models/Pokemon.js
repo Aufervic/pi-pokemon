@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
     speed: {
       type: DataTypes.INTEGER,
     },
-    heihgt: {// 7 pero quiere decir 0.7m
+    height: {// 7 pero quiere decir 0.7m
       type: DataTypes.INTEGER,
     },
     weight: {// 69 pero quiere decir 6.9kg

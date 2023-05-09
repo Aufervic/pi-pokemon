@@ -23,23 +23,28 @@ const _extractPokemonStats = (stats) =>{
 }
 
 // devuelve información básica de un pokemon
-const extractPokemon = (data) => {
+const extractPokemon = (data) => {// data es el obj de un pokemon que viene de la API
   const {id, name, sprites} = data
 
   const image = sprites.other.dream_world.front_default
+
+  
 
   return {id, name, image}
 }
 
 
 const extractPokemonDetail = (data) => {
-  const {id, name, sprites, stats, height, weight} = data
+  const {id, name, sprites, stats, height, weight, types} = data
 
   const sts = _extractPokemonStats(stats)
 
   const image = sprites.other.dream_world.front_default
 
-  return {id, name, image, ...sts, height, weight}
+  let tps = types.map( t => {return {id: parseInt(t.type.url.split('/')[6]), name: t.type.name}})
+  tps = tps.sort((ta, tb) => ta.id - tb.id)
+
+  return {id, name, image, ...sts, height, weight, types: tps}
 }
 
 

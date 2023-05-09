@@ -1,18 +1,42 @@
 require('dotenv').config()
 const axios = require('axios')
 const Extractors = require('../utils/extractors')
+const {Pokemon, Type} = require('../db')
+
 const {API_URL} = process.env
+
+
+const _getPokemonsByNameOfDB = async (name) => {
+  return await Pokemon.findAll({
+    where: {name},
+    include:{
+      model: Type,
+      through: {
+        attributes: []
+      }
+    }
+  })
+}
+
+const _getPokemonsByNameOfAPI = async (name) => {
+  const {data} = await axios.get(`${API_URL}/${name}`)
+
+  return Extractors.extractPokemonDetail(data)
+}
 
 const getPokemonsByName = async (req, res)=>{
   try {
     const name = req.query.name.toLowerCase()
     
+    
     // Buscar en la Base de Datos
+    let pokemon = await _getPokemonsByNameOfDB(name)
+    
+    if(pokemon.length) return res.status(200).json(pokemon)
 
     // Buscar en la API
-    const {data} = await axios.get(`${API_URL}/${name}`)
-
-    const pokemon = Extractors.extractPokemon(data)
+     pokemon = await _getPokemonsByNameOfAPI(name)
+    
 
     res.status(200).json(pokemon)
 
