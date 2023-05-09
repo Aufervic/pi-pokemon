@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    hp: {
+    health: {// vida, health, Hit Points
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -27,10 +27,10 @@ module.exports = (sequelize) => {
     speed: {
       type: DataTypes.INTEGER,
     },
-    heihgt: {
+    heihgt: {// 7 pero quiere decir 0.7m
       type: DataTypes.INTEGER,
     },
-    weight: {
+    weight: {// 69 pero quiere decir 6.9kg
       type: DataTypes.INTEGER,
     },
     
