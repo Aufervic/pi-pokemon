@@ -1,10 +1,10 @@
 const express = require('express')
-const getAllTypes = require('../controllers/getAllTypes')
+const {getAllTypesHandler} = require('../handlers/typeHandlers')
 
 const typeRouter = express.Router()
 
 
-typeRouter.get('/', getAllTypes)
+typeRouter.get('/', getAllTypesHandler)
 
 
 module.exports = typeRouter

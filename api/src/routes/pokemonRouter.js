@@ -1,21 +1,24 @@
 const express = require('express')
-const getAllPokemons = require('../controllers/getAllPokemons')
-const getPokemonsByName = require('../controllers/getPokemonsByName')
-const getPokemonsByID = require('../controllers/getPokemonsByID')
-const createPokemon = require('../controllers/createPokemon')
+
+const {
+  getAllPokemonsHandler,
+  getPokemonByIDHandler,
+  getPokemonByNameHandler,
+  createPokemonHandler
+} = require('../handlers/pokemonHandlers')
 
 const pokemonRouter = express.Router()
 
 
-pokemonRouter.get('/', getAllPokemons)
+pokemonRouter.get('/', getAllPokemonsHandler)
 
 
 // por query name?
-pokemonRouter.get('/name', getPokemonsByName)
+pokemonRouter.get('/name', getPokemonByNameHandler)
 
-pokemonRouter.get('/:idPokemon', getPokemonsByID)
+pokemonRouter.get('/:idPokemon', getPokemonByIDHandler)
 
-pokemonRouter.post('/', createPokemon)
+pokemonRouter.post('/', createPokemonHandler)
 
 
 module.exports = pokemonRouter

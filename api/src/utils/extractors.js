@@ -4,10 +4,10 @@
 // y le dan el "formato" con el que trabajamos
 
 // extrae HEALTH, ATTACK, DEFENSE Y SPEED de STATS
-const _extractPokemonStats = (stats) =>{
+const _extractPokemonStats = (statsAPI) =>{
   const sts  = {}
 
-  stats.forEach( s => {
+  statsAPI.forEach( s => {
     switch(s.stat.name){
       case 'hp':
         sts['health'] = s.base_stat
@@ -22,27 +22,33 @@ const _extractPokemonStats = (stats) =>{
   return sts
 }
 
+const _extractPokemonTypes = (typesAPI)=>{
+  let tps  = typesAPI.map( t => {return {id: parseInt(t.type.url.split('/')[6]), name: t.type.name}})
+  tps = tps.sort((ta, tb) => ta.id - tb.id)
+
+  return tps
+}
+
 // devuelve información básica de un pokemon
-const extractPokemon = (data) => {// data es el obj de un pokemon que viene de la API
-  const {id, name, sprites} = data
+const extractPokemon = (pokemonAPI) => {// pokemonAPI es el obj de un pokemon que viene de la API
+  const {id, name, sprites, types} = pokemonAPI
 
   const image = sprites.other.dream_world.front_default
 
-  
+  const tps = _extractPokemonTypes(types)
 
-  return {id, name, image}
+  return {id, name, image, types: tps}
 }
 
 
-const extractPokemonDetail = (data) => {
-  const {id, name, sprites, stats, height, weight, types} = data
+const extractPokemonDetail = (pokemonAPI) => {
+  const {id, name, sprites, stats, height, weight, types} = pokemonAPI
 
   const sts = _extractPokemonStats(stats)
 
   const image = sprites.other.dream_world.front_default
 
-  let tps = types.map( t => {return {id: parseInt(t.type.url.split('/')[6]), name: t.type.name}})
-  tps = tps.sort((ta, tb) => ta.id - tb.id)
+  const tps = _extractPokemonTypes(types)
 
   return {id, name, image, ...sts, height, weight, types: tps}
 }

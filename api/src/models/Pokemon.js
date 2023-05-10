@@ -33,7 +33,11 @@ module.exports = (sequelize) => {
     weight: {// 69 pero quiere decir 6.9kg
       type: DataTypes.INTEGER,
     },
-    
+    createdInDB: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    }
   },{
     timestamps: false
   });
