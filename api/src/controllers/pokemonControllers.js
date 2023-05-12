@@ -37,10 +37,10 @@ const _getAllPokemonsOfDB = async () => {
 }
 
 const getAllPokemons = async (offset) => {
+  const pokemonsDB = await _getAllPokemonsOfDB()
     const pokemonsAPI = await _getAllPokemonsOfAPI(offset)
-    const pokemonsDB = await _getAllPokemonsOfDB()
 
-    return pokemonsAPI.concat(pokemonsDB)
+    return pokemonsDB.concat(pokemonsAPI)
 }
 
 
@@ -66,8 +66,12 @@ const _getPokemonByIDOfAPI = async (id)=>{
 
 const getPokemonByID = async (id) => {
   // Pedir a la BD
-  let pokemon = await _getPokemonByIDOfDB(parseInt(id))
-  if(pokemon) return pokemon
+
+  if(isNaN(id)){
+    let pokemon = await _getPokemonByIDOfDB(id)
+    if(pokemon) return pokemon
+  }
+    
     
   // Pedimos a la API
   return await _getPokemonByIDOfAPI(id)
@@ -105,25 +109,25 @@ const getPokemonByName = async (name) => {
 
 
 
-let id = 10000
 const createPokemon = async (name, image, health, attack, defense, speed, height, weight, types)=>{
 
-    const newPokemon = await Pokemon.create({id, name, image, health, attack, defense, speed, height, weight})
-    await newPokemon.addTypes(types)
+  // verificar si existen los types, antes de crear el pokemon
+  const newPokemon = await Pokemon.create({name, image, health, attack, defense, speed, height, weight})
+  await newPokemon.addTypes(types)
+  
+  const thePokemon = await Pokemon.findByPk(newPokemon.id, {
+    include: {
+      model: Type,
+      //attributes: ['name'],
+      through: {
+        attributes: [], // nada de la tabla intermedia, cuando tiene los atributos timestamps
+      }, 
+    }
+  })
+  if(!thePokemon) throw new Error(`Pokemon con id: ${newPokemon.id} no existe :(`)
+  
 
-    const thePokemon = await Pokemon.findByPk(id, {
-      include: {
-        model: Type,
-        //attributes: ['name'],
-        through: {
-          attributes: [], // nada de la tabla intermedia, cuando tiene los atributos timestamps
-        }, 
-      }
-    })
-    if(!thePokemon) throw new Error(`Pokemon con id: ${id} no existe :(`)
-    id++
-
-    return thePokemon
+  return thePokemon
 
 }
 

@@ -50,7 +50,8 @@ const createPokemonHandler = async(req, res) => {
     // debe por lo menos relacionarse con 2 tipos
     if(types.length < 2) throw new Error('El pokemon debe tener al menos 2 tipos')
 
-    const newPokemon = await createPokemon(name, image, health, attack, defense, speed, height, weight, types)
+    
+    const newPokemon = await createPokemon(name.toLowerCase(), image, health, attack, defense, speed, height, weight, types)
 
     res.status(200).json(newPokemon)
   } catch (error) {
