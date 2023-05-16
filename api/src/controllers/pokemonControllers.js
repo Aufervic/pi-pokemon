@@ -131,9 +131,28 @@ const createPokemon = async (name, image, health, attack, defense, speed, height
 
 }
 
+
+const deletePokemon = async (id)=>{
+  console.log("ELIMINANDO")
+  const newPokemon = await Pokemon.destroy({where: {id}})
+
+  return {message: "POKEMONSE ELIMINADO"}
+}
+
+
+const testPokemon = async (id)=>{
+  console.log("ELIMINANDO")
+  const newPokemon = await Pokemon.destroy({where: {id}})
+
+  return {message: "POKEMONSE ELIMINADO"}
+}
+
 module.exports = {
   getAllPokemons,
   getPokemonByID,
   getPokemonByName,
-  createPokemon
+  createPokemon,
+  deletePokemon,
+
+  testPokemon
 }

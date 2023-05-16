@@ -2,7 +2,10 @@ const {
   getAllPokemons,
   getPokemonByID,
   getPokemonByName,
-  createPokemon
+  createPokemon,
+  deletePokemon,
+
+  testPokemon
 } = require('../controllers/pokemonControllers')
 
 const getAllPokemonsHandler = async (req, res) =>{
@@ -59,9 +62,43 @@ const createPokemonHandler = async(req, res) => {
   }
 }
 
+
+
+const deletePokemonHandler = async(req, res) => {
+  const {id} = req.params
+
+  try {
+    // debe por lo menos relacionarse con 2 tipos
+   
+    const result = await deletePokemon(id)
+
+    res.status(200).json(result)
+  } catch (error) {
+    res.status(500).json({error: error.message})
+  }
+}
+
+
+const testPokemonHandler = async(req, res) => {
+  const {id} = req.params
+
+  try {
+    // debe por lo menos relacionarse con 2 tipos
+   
+    const result = await testPokemon(id)
+
+    res.status(200).json(result)
+  } catch (error) {
+    res.status(500).json({error: error.message})
+  }
+}
+
 module.exports = {
   getAllPokemonsHandler,
   getPokemonByIDHandler,
   getPokemonByNameHandler,
-  createPokemonHandler
+  createPokemonHandler,
+  deletePokemonHandler,
+
+  testPokemonHandler
 }

@@ -4,7 +4,10 @@ const {
   getAllPokemonsHandler,
   getPokemonByIDHandler,
   getPokemonByNameHandler,
-  createPokemonHandler
+  createPokemonHandler,
+  testPokemonHandler,
+  deletePokemonHandler
+  
 } = require('../handlers/pokemonHandlers')
 
 const pokemonRouter = express.Router()
@@ -20,5 +23,11 @@ pokemonRouter.get('/:idPokemon', getPokemonByIDHandler)
 
 pokemonRouter.post('/', createPokemonHandler)
 
+
+pokemonRouter.delete('/delete/:id', deletePokemonHandler)
+
+
+
+pokemonRouter.delete('/test/:id', testPokemonHandler)
 
 module.exports = pokemonRouter
