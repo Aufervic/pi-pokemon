@@ -108,7 +108,6 @@ const getPokemonByName = async (name) => {
 }
 
 
-
 const createPokemon = async (name, image, health, attack, defense, speed, height, weight, types)=>{
 
   // verificar si existen los types, antes de crear el pokemon
