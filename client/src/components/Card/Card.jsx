@@ -2,19 +2,43 @@ import {NavLink} from 'react-router-dom'
 import style from './Card.module.css'
 import Helper from '../../helpers/Helper'
 
+
 const Card = ({id, name, image, types}) =>{
 
-  
+  // const imgsTypes = Helper.getImgType()
+  let shortTypes = types.length > 4 ? types.slice(0,4): types
+  const colors = Helper.getTypeColors(shortTypes)
+  const addStyle=(colors)=>{
+    return {
+      background: `linear-gradient(${colors[0]}, ${colors[1]})`,
+      // backgroundColor: color,
+    }
+  }
 
   return (
-    <div className={style.Card}>
-      <p>{id}</p>
-      <p>{Helper.capitalize(name)}</p>
+    
+    <div className={style.Card} style={addStyle(colors)}>
+      <NavLink to={`/detail/${id}`} className={style.navLink}>
+      
+      <p className={style.idPokemon}>
+            <span>#</span>
+            {Helper.prettifyID(id)}
+      </p>
+      <span className={style.name}>{Helper.capitalize(name)}</span>
+      
       <img src={image} alt={name} className={style.img}/>
-      <div>
-        <span>{types.map(t => {return Helper.capitalize(t.name)}).join(' ')}</span>
+      <div className={style.typesContent}>
+        {shortTypes.map( t => {
+          return (
+            <div className={style.typeItem} key={t.id}>
+              <img src={Helper.getImgType(t.id)} alt={t.name} title={Helper.capitalize(t.name)} />
+              {/* <p>{Helper.capitalize(t.name)}</p> */}
+            </div>
+          )
+        })}
       </div>
-      <NavLink to={`/detail/${id}`}>DETALLE</NavLink>
+      {/* <NavLink to={`/detail/${id}`}>DETALLE</NavLink> */}
+    </NavLink>
     </div>
   )
 }

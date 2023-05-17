@@ -23,7 +23,8 @@ const _extractPokemonStats = (statsAPI) =>{
 }
 
 const _extractPokemonTypes = (typesAPI)=>{
-  let tps  = typesAPI.map( t => {return {id: parseInt(t.type.url.split('/')[6]), name: t.type.name}})
+  // en la url, los tipos se cuentan desde 1, por eso restamos 1
+  let tps  = typesAPI.map( t => {return {id: parseInt(t.type.url.split('/')[6])-1, name: t.type.name}})
   tps = tps.sort((ta, tb) => ta.id - tb.id)
 
   return tps

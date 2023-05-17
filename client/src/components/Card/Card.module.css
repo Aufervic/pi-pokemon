@@ -1,19 +1,98 @@
+
 .Card{
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   border-radius: 15px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   box-shadow: 10px 10px 10px rgba(143, 153, 163, 0.5);
 
-  align-items: center;
+  /* align-items: center; */
 
   width: 300px;
   margin: 30px;
+
+  /* background-color: #8e7bb4; */
+  
+}
+.Card:hover{
+  transform: scale(1.04);
+}
+
+.navLink{
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 20px;
+  /* background-color: blue; */
+  border-radius: 15px;
+}
+
+.idPokemon {
+  width: 80px;
+  background-color: #ffffff;
+  text-align: center;
+  padding: 8px 0;
+  border-radius: 30px;
+  margin-left: auto;
+  font-weight: 400;
+  color: rgb(107, 107, 107);
+}
+.idPokemon span {
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+}
+
+.name{
+  margin-right: auto;
+
+  color: white;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+  /* font-family: 'Courier New', Courier, monospace; */
+
+  
+  /*elegido*/
+  font-family: 'Concert One', cursive;
+
+  /* irregular pero divertido*/
+  /* font-family: 'Hanalei Fill', cursive; */
+  /* otro */
+  /* font-family: 'PT Sans', sans-serif; */
+  /* TITULO DETAIL*/
+  /* font-family: 'Alegreya Sans SC', sans-serif; */
+
+  font-size: 32px;
+  /* font-weight: bold; */
+  margin-left: 5px;
+  /* padding-left: 5px; */
+
+  padding-bottom: 20px;
+  
 }
 
 .img {
   height: 160px;
   width: 160px;
+  /* border-radius: 50%;
+  border: 5px solid #272133; */
+}
+
+
+.typesContent {
+  display: flex;
+  padding-top: 10px;
+  gap: 10px;
+  
+}
+.typesContent img{
+  width: 50px;
   border-radius: 50%;
-  border: 5px solid #272133;
+  border: 5px solid #ffffff
+}
+.typeItem p{
+  font-size: 14px;
+  color: #696969;
+  /* -webkit-text-stroke: 1px rgb(255, 255, 255); */
 }
