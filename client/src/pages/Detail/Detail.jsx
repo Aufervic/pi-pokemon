@@ -34,7 +34,7 @@ const Detail = () => {
     const objStyle2= {
       backgroundColor: '#ffeaa7',
     }
-    const somePic = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+    // const somePic = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
     const cardStyle= {
       //background:  `linear-gradient(190deg, #fa7c30 30%, rgba(0, 0, 0, 0)30%), url(${somePic})`
       background: `radial-gradient(circle at 50% 0%, orange 36%, #ffffff 36%)`
@@ -47,7 +47,7 @@ const Detail = () => {
             <span>HP</span>
               50
           </p>
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg" />
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg" alt='pokemon'/>
           <h2 className={style.pokeName}>Bolbasaur</h2>
           <div className={style.types}>
             <span style={objStyle1}>grass</span>

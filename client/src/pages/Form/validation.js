@@ -1,5 +1,5 @@
 export default function validate(userData) {
-  const regexEmail = /\S+@\S+\.\S+/
+  //const regexEmail = /\S+@\S+\.\S+/
   let errors = {}
 
   // if(userData.email===''){

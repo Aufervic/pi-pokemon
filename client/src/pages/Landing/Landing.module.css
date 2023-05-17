@@ -1,0 +1,104 @@
+
+:root{
+  /* --primary-color: #F5CF06;
+  --secondary-color: #8E4106; */
+  --primary-color: #f97c26;
+  --secondary-color: #fffffd;
+}
+
+
+.container {
+  height: 100vh;
+  width: 100%;
+  /* background-image: url(images/bg.png); */
+  /* background: linear-gradient(180deg, rgb(255, 224, 26) 8%, rgb(250, 198, 27) 32%, rgb(255, 177, 21) 62%, rgb(255, 91, 26) 88%); */
+  background-color: #363b81;
+  background-position: center;
+  background-size: cover;
+  padding-right: 3%;
+  padding-left: 5%;
+  padding-top: 5%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: green; */
+  
+}
+.content .text {
+  position: relative;
+  max-width: 600px;
+}
+.content .text h1 {
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-top: 50px;
+  line-height: 1.5em;
+  letter-spacing: .1em;
+  font-size: 40px;
+  color: #5db9ff;
+}
+.content .text h1 span {
+  font-size: 50px;
+}
+.content .text p {
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  color: #e7e3e3;
+}
+.btn {
+  /* background: linear-gradient(to bottom, #cbcbcb 2%, #fff 100%); */
+  background-color: #fbd743;
+  margin-top: 60px;
+  margin-left: 140px;
+  padding: 15px 30px;
+  text-align: center;
+  /* transition: .5s; */
+  /* border: none;
+  outline: none; */
+  text-transform: uppercase;
+  color: #1b1b1b;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 30px;
+  box-shadow: 1px 4px 12px rgba(94,28,68,.15);
+  text-decoration: none;
+}
+.btn:hover {
+  box-shadow: 0px 0px 12px rgb(148, 114, 18);
+  /* transform: scale(1.1); */
+  /* transition: .2s ease-in-out; */
+}
+.imageContainer {
+  /* background-color: red; */
+  display: flex;
+  /* height: 100%; */
+  /* position: absolute; */
+  /* height: 100px; */
+  /* margin-top: 80px; */
+  /* padding-right: 440px; */
+  justify-content: flex-end;
+  /* width: 80px; */
+}
+
+.imageContainer img{
+  height: 400px;
+}
+
+.by{
+  color: #e7e3e3;
+  font-style: italic;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
