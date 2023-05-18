@@ -1,17 +1,38 @@
-import {Link} from 'react-router-dom'
+import {NavLink, useLocation } from 'react-router-dom'
 import style from './NavBar.module.css'
+import { useEffect, useState } from 'react'
 
 
 const NavBar = () => {
+  const location =  useLocation()
+  const path = location.pathname.replace('/', '')
+  const [ruta, setRuta] =useState(path)
 
-  return (
-    <div className={style.container}>
-      
-      <Link to='/home'>HOME</Link>
-      <Link to='/form'>FORM</Link>
-      
-    </div>
-  )
+  useEffect(()=>{
+    setRuta(path)
+  },[path])
+
+  console.log(path)
+  
+    return (
+      <nav>
+         <div className={style.logo}>
+            PI-Pokemon
+         </div>
+
+         <ul>
+            {/* <li><a className={style.active} href="#">Home</a></li> */}
+            <li><NavLink to="/home" className={ruta==='home'?style.active:''}>Home</NavLink></li>
+            <li><NavLink to="/form" className={ruta==='form'?style.active:''}>Form</NavLink></li>
+            <li><NavLink to="/about" className={ruta==='about'?style.active:''}>About</NavLink></li>
+            <li><NavLink to="/">Exit</NavLink></li>
+         </ul>
+      </nav>
+
+    )
+  
+
+
 }
 
 export default NavBar

@@ -2,30 +2,57 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 import Helper from '../../helpers/Helper'
-import style from './Detail.module.css'
+import style from './Detail2.module.css'
 
 const Detail = () => {
   const {id} = useParams()
   let [pokemon, setPokemon] = useState({})
 
-  useEffect(()=>{
-    console.log("Montando detail")
-    axios.get(`http://localhost:3001/pokemons/${id}`)
-      .then( ({data}) => {
-        console.log("Traje el pokemon por id")
-        if (data.name) {
-          setPokemon(data);
-        }
-      })
-  }, [id])
+  // useEffect(()=>{
+  //   console.log("Montando detail")
+  //   axios.get(`http://localhost:3001/pokemons/${id}`)
+  //     .then( ({data}) => {
+  //       console.log("Traje el pokemon por id")
+  //       if (data.name) {
+  //         setPokemon(data);
+  //       }
+  //     })
+  // }, [id])
 
 
-  if(!pokemon?.name){
+  // if(!pokemon?.name){
+  //   return (
+  //     <div>No hay datos...</div>
+  //   )
+  // }
+  let bandera = true
+  if(bandera && true){
     return (
-      <div>No hay datos...</div>
+      <div id={style.modalOverlay}>
+            <div id={style.modal}>
+            
+                <div>
+                    <h2>Charizard</h2>
+                    <span id={style.number}>#00006</span>
+                </div>
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg" alt="char"/>
+                <div className={style.details}>
+                    <span id={style.species}>Species: Charizard</span>
+                    <span id={style.height}>Height: 17</span>
+                    <div className={style.progressBarContainer}>
+                      <div className={style.progressBar}>
+                        <span className={style.progressBarText}>Uploaded Successfully!</span>
+                      </div>
+                    </div>
+                    <span id={style.weight}>Weight: 90</span>
+                    <span id={style.abilities}>Abilities: blaze, solar-power</span>
+                </div>
+
+            </div>
+        </div>
     )
   }
-  let bandera = true
+
   if(bandera){
 
     const objStyle1= {
@@ -67,7 +94,7 @@ const Detail = () => {
               <p>Speed</p>
             </div>
           </div>
-          <button id={style.btn}>Generate</button>
+          <button id={style.btn}>{'<'}</button>
         </div>
       </div>
     )
