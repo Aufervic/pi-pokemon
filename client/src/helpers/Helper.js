@@ -61,34 +61,37 @@ const getImgType = (id) => {
 };
 
 const TYPE_COLORS = {
-    "normal":"#dcdcdc",
-    "fighting":"#da7589",
-    "flying":"#bbc9e4",
-    "poison":"#d6a2e4",
-    "ground":"#e69a74",
-    "rock":"#C9BB8A",
-    "bug":"#bae05f",
-    "ghost":"#8291e0",
-    "steel":"#9fb8b9",
-    "fire":"#ffb971",
-    "water":"#8cc4e2",
-    "grass":"#a8ff98",
-    "electric":"#ffe662",
-    "psychic":"#ffa5da",
-    "ice":"#8cf5e4",
-    "dragon":"#88a2e8",
-    "dark":"#8e8c94",
-    "fairy":"#fdb9e9",
-    "unknown":"#gainsboro",
-    "shadow":"#26de81",
-  }
-
-const getTypeColors = (types) =>{
-  if(types.length>1){
-    return [TYPE_COLORS[types[0].name], TYPE_COLORS[types[1].name] ]
-  }
-  return [TYPE_COLORS[types[0].name], TYPE_COLORS[types[0].name] ]
+    // primero color es más suave, el segundo es para bacgrounds
+    "normal":["#dcdcdc", "#aca974"],
+    "fighting":["#da7589", "#d36063"],
+    "flying":["#bbc9e4", "#5eb9b2"],
+    "poison":["#d6a2e4", "#611380"],
+    "ground":["#e69a74", "#5f4632"],
+    "rock":["#C9BB8A", "#776a3e"],
+    "bug":["#bae05f", "#91ba2e"],
+    "ghost":["#8291e0", "#472b53"],
+    "steel":["#9fb8b9", "#7b8e8a"],
+    "fire":["#ffb971", "#f67f0b"],
+    "water":["#8cc4e2", "#08517a"],
+    "grass":["#a8ff98", "#29c037"],
+    "electric":["#ffe662", "#fffa24"],
+    "psychic":["#ffa5da", "#f55792"],
+    "ice":["#8cf5e4", "#1995a1"],
+    "dragon":["#88a2e8", "#8a55fd"],
+    "dark":["#8e8c94", "#4f4f4f"],
+    "fairy":["#fdb9e9", "#f87ea7"],
+    "unknown":["#gainsboro", "#fc0c0b"],
+    "shadow":["#26de81", "#454545"],
 }
+const getTypeColors = (types, pos) =>{
+  if(!pos) pos = 0
+  if(types.length>1){
+    return [TYPE_COLORS[types[0].name][pos], TYPE_COLORS[types[1].name][pos] ]
+  }
+  return [TYPE_COLORS[types[0].name][pos], TYPE_COLORS[types[0].name][pos] ]
+}
+
+
 const Helper = {
   capitalize,
   prettifyID,
