@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import {Cards} from '../../components'
-import { getPokemons } from '../../redux/actions'
+import { getPokemons, getTypes } from '../../redux/actions'
 
 const Home = () => {
 
@@ -10,6 +10,8 @@ const Home = () => {
   useEffect(()=>{
     console.log("montando home")
     dispatch(getPokemons())
+    dispatch(getTypes())
+    
   }, [dispatch])
 
   return (
