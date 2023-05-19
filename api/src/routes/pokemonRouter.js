@@ -28,6 +28,6 @@ pokemonRouter.delete('/delete/:id', deletePokemonHandler)
 
 
 
-pokemonRouter.delete('/test/:id', testPokemonHandler)
+pokemonRouter.get('/test/:id', testPokemonHandler)
 
 module.exports = pokemonRouter

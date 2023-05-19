@@ -26,7 +26,7 @@ const _getAllPokemonsOfAPI = async (offset) =>{
 
 const _getAllPokemonsOfDB = async () => {
   return  await Pokemon.findAll({
-    attributes: ['id', 'name', 'image', 'createdInDB'],
+    attributes: ['id', 'name', 'image', 'attack', 'createdInDB'],
     include: {
       model: Type,
       through: {
@@ -140,10 +140,10 @@ const deletePokemon = async (id)=>{
 
 
 const testPokemon = async (id)=>{
-  console.log("ELIMINANDO")
-  const newPokemon = await Pokemon.destroy({where: {id}})
+  
+  const types = await Type.findAll({where: {id: [1, 2]}})
 
-  return {message: "POKEMONSE ELIMINADO"}
+  return types
 }
 
 module.exports = {

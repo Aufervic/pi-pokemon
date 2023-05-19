@@ -1,9 +1,9 @@
 import {NavLink} from 'react-router-dom'
 import style from './Card.module.css'
 import Helper from '../../helpers/Helper'
+import IconAttack from '../../assets/icon-attack-5.png'
 
-
-const Card = ({id, name, image, types}) =>{
+const Card = ({id, name, image, attack, types}) =>{
 
   // const imgsTypes = Helper.getImgType()
   let shortTypes = types.length > 4 ? types.slice(0,4): types
@@ -19,11 +19,18 @@ const Card = ({id, name, image, types}) =>{
     
     <div className={style.Card} style={addStyle(colors)}>
       <NavLink to={`/detail/${id}`} className={style.navLink}>
+      <div className={style.headContainer}>
+        <p className={style.statAttack}>
+          <img src={IconAttack} alt='attack'/>
+          {attack}
+        </p>
+        <p className={style.idPokemon}>
+              <span>#</span>
+              {Helper.prettifyID(id)}
+        </p>
       
-      <p className={style.idPokemon}>
-            <span>#</span>
-            {Helper.prettifyID(id)}
-      </p>
+      </div>
+      
       <span className={style.name}>{Helper.capitalize(name)}</span>
       
       <img src={image} alt={name} className={style.img}/>
@@ -37,6 +44,7 @@ const Card = ({id, name, image, types}) =>{
           )
         })}
       </div>
+      
       {/* <NavLink to={`/detail/${id}`}>DETALLE</NavLink> */}
     </NavLink>
     </div>

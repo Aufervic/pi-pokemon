@@ -32,13 +32,13 @@ const _extractPokemonTypes = (typesAPI)=>{
 
 // devuelve información básica de un pokemon
 const extractPokemon = (pokemonAPI) => {// pokemonAPI es el obj de un pokemon que viene de la API
-  const {id, name, sprites, types} = pokemonAPI
+  const {id, name, sprites, types, stats} = pokemonAPI
 
   const image = sprites.other.dream_world.front_default
 
   const tps = _extractPokemonTypes(types)
 
-  return {id, name, image, types: tps}
+  return {id, name, image, types: tps, attack: stats[1].base_stat}
 }
 
 

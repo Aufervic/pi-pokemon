@@ -28,13 +28,38 @@
   border-radius: 15px;
 }
 
+.headContainer{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: blue; */
+}
+.statAttack {
+  width: 70px;
+  background-color: #ffffff;
+  /* text-align: center; */
+  padding-top: 4px;
+  border-radius: 30px;
+  /* margin-right: auto; */
+  font-weight: 400;
+  color: rgb(189, 63, 63);
+}
+.statAttack img {
+  height: 18px;
+  /* background-color: blue; */
+  
+  /* letter-spacing: 0.4px; */
+  /* font-weight: 600; */
+}
+
 .idPokemon {
   width: 80px;
   background-color: #ffffff;
   text-align: center;
   padding: 8px 0;
   border-radius: 30px;
-  margin-left: auto;
+  /* margin-left: auto; */
   font-weight: 400;
   color: rgb(107, 107, 107);
 }
@@ -75,6 +100,7 @@
 .img {
   height: 160px;
   width: 160px;
+  background: radial-gradient(circle, rgb(238, 238, 238) 0%, rgb(238, 238, 238) 70%, rgba(238, 238, 238, 0) 71%);
   /* border-radius: 50%;
   border: 5px solid #272133; */
 }
@@ -82,14 +108,14 @@
 
 .typesContent {
   display: flex;
-  padding-top: 10px;
+  padding-top: 20px;
   gap: 10px;
   
 }
 .typesContent img{
   width: 50px;
   border-radius: 50%;
-  border: 5px solid #ffffff
+  border: 5px solid #ffffff;
 }
 .typeItem p{
   font-size: 14px;

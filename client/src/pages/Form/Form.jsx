@@ -67,6 +67,7 @@ const Form = () => {
     event.preventDefault()
 
     pokemonData.name = pokemonData.name.toLowerCase()
+    pokemonData.types = pokemonData.types.sort()
 
     axios.post('http://localhost:3001/pokemons', pokemonData)
     .then(res => console.log("creado", res.data))
