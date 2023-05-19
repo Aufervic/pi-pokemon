@@ -80,7 +80,7 @@ const getPokemonByID = async (id) => {
 
 
 const _getPokemonsByNameOfDB = async (name) => {
-  return await Pokemon.findAll({
+  return await Pokemon.findOne({
     where: {name},
     include:{
       model: Type,
@@ -101,7 +101,7 @@ const getPokemonByName = async (name) => {
     // Buscar en la Base de Datos
     let pokemon = await _getPokemonsByNameOfDB(name)
     
-    if(pokemon.length) return pokemon
+    if(pokemon) return pokemon
 
     // Buscar en la API
     return await _getPokemonsByNameOfAPI(name)

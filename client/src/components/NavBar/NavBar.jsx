@@ -17,7 +17,7 @@ const NavBar = () => {
     return (
       <nav>
          <div className={style.logo}>
-            PI-Pokemon
+            <NavLink to="/home" className={style.navlink}>PI-Pokemon</NavLink>
          </div>
 
          <ul>

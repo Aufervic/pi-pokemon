@@ -1,15 +1,13 @@
-import {useSelector} from 'react-redux'
+import { connect } from "react-redux"
 import Card from '../Card/Card'
 import style  from './Cards.module.css'
 
-const Cards = () => {
-  const pokemons = useSelector(state => state.allPokemons)
-  // const pokemons = []
+const Cards = ({pokemons}) => {
   return (
     <div className= {style.Cards}>
-      {pokemons.map(p => {
+      {pokemons.map((p, i) => {
         return (
-          <Card key = {p.id}
+          <Card key = {i}
             id = {p.id}
             name = {p.name}
             image = {p.image}
@@ -22,4 +20,12 @@ const Cards = () => {
 }
 
 
-export default Cards
+// export default Cards
+
+const mapStateToProps = (state) => {
+  return {
+    pokemons: state.pokemons
+  }
+}
+
+export default connect(mapStateToProps, null)(Cards)

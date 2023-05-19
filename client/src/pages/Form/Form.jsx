@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 import validate from './validation'
 import style from './Form.module.css'
 import Helper from '../../helpers/Helper'
@@ -66,8 +67,10 @@ const Form = () => {
     event.preventDefault()
 
     pokemonData.name = pokemonData.name.toLowerCase()
-    console.log("Nuevo pokemon",pokemonData)
-    console.log("Errores", errors)
+
+    axios.post('http://localhost:3001/pokemons', pokemonData)
+    .then(res => console.log("creado", res.data))
+    .catch(err => console.log("error", err))
   }
 
   return (
@@ -144,7 +147,7 @@ const Form = () => {
           </div>
         </div>
 
-        <button type="submit" id={style.btn}>Create Pokemon</button>
+        <button type="submit" className={style.btn}>Create Pokemon</button>
       </form>
     </div>
   )

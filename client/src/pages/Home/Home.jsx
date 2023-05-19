@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import {Cards} from '../../components'
+import {Cards, FilterBar} from '../../components'
 import { getPokemons, getTypes } from '../../redux/actions'
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <div>
-      <h2>HOME</h2>
+      <FilterBar/>
       <Cards/>
     </div>
   )

@@ -26,7 +26,12 @@ const capitalize = (str) => {
 };
 
 const prettifyID = (id) => {
-  return "00" + id;
+
+  if(isNaN(id)){
+    return " ---"
+  }
+  let sid = '0000'+id
+  return sid.slice(sid.length-4)
 };
 
 let _TYPES = [];
@@ -70,7 +75,7 @@ const TYPE_COLORS = {
     "rock":["#C9BB8A", "#776a3e"],
     "bug":["#bae05f", "#91ba2e"],
     "ghost":["#8291e0", "#472b53"],
-    "steel":["#9fb8b9", "#7b8e8a"],
+    "steel":["#586079", "#586079"],
     "fire":["#ffb971", "#f67f0b"],
     "water":["#8cc4e2", "#08517a"],
     "grass":["#a8ff98", "#29c037"],
