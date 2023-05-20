@@ -1,7 +1,7 @@
 import {NavLink} from 'react-router-dom'
 import style from './Card.module.css'
 import Helper from '../../helpers/Helper'
-import IconAttack from '../../assets/icon-attack-5.png'
+import IconAttack from '../../assets/icon-attack.png'
 
 const Card = ({id, name, image, attack, types}) =>{
 

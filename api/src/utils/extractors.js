@@ -35,6 +35,8 @@ const extractPokemon = (pokemonAPI) => {// pokemonAPI es el obj de un pokemon qu
   const {id, name, sprites, types, stats} = pokemonAPI
 
   const image = sprites.other.dream_world.front_default
+  // const image = sprites.other.home.front_default
+  // const image = sprites.other['official-artwork'].front_default
 
   const tps = _extractPokemonTypes(types)
 
@@ -48,6 +50,8 @@ const extractPokemonDetail = (pokemonAPI) => {
   const sts = _extractPokemonStats(stats)
 
   const image = sprites.other.dream_world.front_default
+  // const image = sprites.other.home.front_default // no encaja
+  // const image = sprites.other['official-artwork'].front_default
 
   const tps = _extractPokemonTypes(types)
 

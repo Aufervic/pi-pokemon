@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 8px;
+}
+
+.searchBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.searchBar input{
+  height: 30px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+  color: #272727;
+  outline: none;
+  border: 1px solid #505050;
+}
+.searchBar input:focus{
+  border: 2px solid #272727;
+}
+.searchBar button{
+  width: 80px;
+  height: 30px;
+  color: white;
+  font-size: 16px;
+  background-color: #4d90fe;
+  /* background-color: #1265a8; */
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+
+}
+.searchBar button[disabled]{
+  background-color: #686868;
+}
+
+
+.filterBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.filterBar select{
+  height: 30px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  border: 1px solid #505050;
+  color: #272727;
+  padding-left: 5px;
+}
+.filterBar select:focus{
+  border: 2px solid #272727;
+}
+.filterBar label{
+  color: #272727;
+}

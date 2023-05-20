@@ -6,9 +6,11 @@ import {
   getPokemonByName,
   orderPokemons,
 } from "../../redux/actions";
+import style from './FilterBar.module.css'
+
 
 const FilterBar = () => {
-  const types = useSelector(state => state.types)
+  const types = useSelector((state) => state.types);
   let [name, setName] = useState("");
   const dispatch = useDispatch();
 
@@ -41,41 +43,42 @@ const FilterBar = () => {
   };
 
   return (
-    <div>
+    <div className={style.container}>
       {/* Search Bar */}
-      <div>
+      <div className={style.searchBar}>
         <input type="search" onChange={handleChangeSearch} value={name} />
         <button onClick={() => onSearch(name)}>Search</button>
       </div>
-      <div>
-        {/* Filtrar por tipo*/}
-        <select name="filterByTypes" id="1" onChange={handleFilter}>
+      <div className={style.filterBar}>
+        {/* FALTA Ordenar Ascendente/Descendente por orden alfabético y por ataque*/}
+        <label htmlFor="order">Order:</label>
+        <select name="order" id="3" onChange={handleOrder}>
           <option value="default">Default</option>
-          {types.map(t =>{ return (
-            <option value={t.name} key={t.id}>{t.name}</option>
-          )})}
-          {/* <option value="default">Default</option>
-          <option value="normal">normal</option>
-          <option value="fighting">Fighting</option>
-          <option value="grass">grass</option>
-          <option value="fire">fire</option>
-          <option value="poison">poison</option> */}
+          <option value="ascName">A-Z</option>
+          <option value="desName">Z-A</option>
+          <option value="ascAttack">Weakest</option>
+          <option value="desAttack">Strongest</option>
         </select>
 
         {/* Filtrar por origen API/BD */}
+        <label htmlFor="filterDBAPI">By Origin:</label>
         <select name="filterDBAPI" id="2" onChange={handleFilter}>
           <option value="all">All</option>
           <option value="db">Database</option>
           <option value="api">API</option>
         </select>
 
-        {/* FALTA Ordenar Ascendente/Descendente por orden alfabético y por ataque*/}
-        <select name="order" id="3" onChange={handleOrder}>
+        {/* Filtrar por tipo*/}
+        <label htmlFor="filterByTypes">By type:</label>
+        <select name="filterByTypes" id="1" onChange={handleFilter}>
           <option value="default">Default</option>
-          <option value="ascName">A-Z by Name</option>
-          <option value="desName">Z-A by Name</option>
-          <option value="ascAttack">Asc by Attack</option>
-          <option value="desAttack">Des by Attack</option>
+          {types.map((t) => {
+            return (
+              <option value={t.name} key={t.id}>
+                {t.name}
+              </option>
+            );
+          })}
         </select>
       </div>
     </div>

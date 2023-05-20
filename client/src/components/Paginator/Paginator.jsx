@@ -1,4 +1,5 @@
 import { useState } from "react"
+import style from './Paginator.module.css'
 
 const Paginator = ({page, setPage, pages, perPage, total}) =>  {
   const [numPage, setNumPage] = useState(1)
@@ -40,13 +41,13 @@ const Paginator = ({page, setPage, pages, perPage, total}) =>  {
   }
 
   return (
-    <div>
-      <div>
+    <div className={style.container}>
+      <div className={style.info}>
         <label>{perPage} pokemons per page</label>
         <label>|</label>
         <label>Total {total} Pokemons</label>
       </div>
-      <div>
+      <div className={style.paginator}>
         <button onClick={firstPages}>{'|<'}</button>
         <button onClick={previousPage} disabled={page <= 1}>{'<'}</button>
         <input name='page' value={numPage} onChange={handleChange}  autoComplete='off' type='number' min={1} max={pages}/>
