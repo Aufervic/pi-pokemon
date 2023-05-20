@@ -1,12 +1,8 @@
-import { connect } from "react-redux"
 import Card from '../Card/Card'
 import style  from './Cards.module.css'
-import { useEffect } from "react"
 
 const Cards = ({pokemons}) => {
-  useEffect(()=>{
-    console.log("Cambio pokemon en card", pokemons)
-  }, [pokemons])
+  
   return (
     <div className= {style.Cards}>
       {pokemons.map((p, i) => {
@@ -25,12 +21,5 @@ const Cards = ({pokemons}) => {
 }
 
 
-// export default Cards
+export default Cards
 
-const mapStateToProps = (state) => {
-  return {
-    pokemons: state.pokemons
-  }
-}
-
-export default connect(mapStateToProps, null)(Cards)
