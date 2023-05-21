@@ -40,7 +40,7 @@ const getAllPokemons = async (offset) => {
   const pokemonsDB = await _getAllPokemonsOfDB()
     const pokemonsAPI = await _getAllPokemonsOfAPI(offset)
 
-    return pokemonsDB.concat(pokemonsAPI)
+    return pokemonsDB.reverse().concat(pokemonsAPI)
 }
 
 
@@ -109,8 +109,9 @@ const getPokemonByName = async (name) => {
 
 
 const createPokemon = async (name, image, health, attack, defense, speed, height, weight, types)=>{
-
   // verificar si existen los types, antes de crear el pokemon
+  console.log(types);
+  types.sort((a, b) => a-b)
   const newPokemon = await Pokemon.create({name, image, health, attack, defense, speed, height, weight})
   await newPokemon.addTypes(types)
   

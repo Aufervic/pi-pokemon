@@ -4,6 +4,7 @@ import axios from 'axios'
 import validate from './validation'
 import style from './Form.module.css'
 import Helper from '../../helpers/Helper'
+import PokemonDefaultImage from '../../assets/whos-that-pokemon.png'
 
 const Form = () => {
   const types = useSelector(state => state.types)
@@ -11,9 +12,9 @@ const Form = () => {
   const [pokemonData, setPokemonData] = useState({
     name: "",
     image: "",
-    health: 0,
-    attack: 0,
-    defense: 0,
+    health: 1,
+    attack: 1,
+    defense: 1,
     speed: 0,
     height: 0,
     weight: 0,
@@ -22,11 +23,37 @@ const Form = () => {
 
   const [errors, setErrors] = useState({})
 
+  const clearPokemonDataState = () => {
+    setPokemonData({
+      name: "",
+      image: "",
+      health: 1,
+      attack: 1,
+      defense: 1,
+      speed: 0,
+      height: 0,
+      weight: 0,
+      types: [0, 1],
+    })
+  }
+
+  const updateStates = (prop, value) => {
+    setPokemonData({
+      ...pokemonData,
+      [prop]: value
+    })
+    setErrors(validate({
+      ...pokemonData,
+      [prop]: value
+    }))
+  }
+
   const handleChange = (event) => {
     let prop = ''
     let value = ''
     switch(event.target.name){
-      case 'type':
+      case 'type':// ya no lo uso
+        console.log("Cambio el tipo")
         prop = 'types'
         value = event.target.checked
           ? [...pokemonData.types, parseInt(event.target.value)]
@@ -35,99 +62,139 @@ const Form = () => {
       case 'health': case 'attack': case 'defense':
       case 'speed': case 'height': case 'weight':
         prop = event.target.name
-        value = parseInt(event.target.value)
+        value = event.target.value
+        value = value!==''?parseInt(value):value
         break
       default:
         prop = event.target.name
         value = event.target.value
     }
 
-    setPokemonData({
-      ...pokemonData,
-      [prop]: value
-    })
-
-    setErrors(validate({
-      ...pokemonData,
-      [prop]: value
-    }))
-    
+    updateStates(prop, value)
   }
+
+  const validateImg = (isOk)=>{
+    if(!isOk){
+      setErrors({
+        ...errors,
+        image: 'Ingrese una url de imagen válida'
+      })
+    }
+  }
+
+
 
   const handleClick = (event) => {
     const id = parseInt(event.target.id)
-    setPokemonData({
-      ...pokemonData,
-      types: pokemonData.types.includes(id)? pokemonData.types.filter(i => i !== id): [...pokemonData.types, id]
-    })
+    const tempTypes = pokemonData.types.includes(id)? pokemonData.types.filter(i => i !== id): [...pokemonData.types, id]
     
+    updateStates('types', tempTypes)
   }
+
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
+    if(Object.keys(errors).length) {
+      console.log("NO PODRAS CREAR PORQUE TIENES ERRORES", errors)
+      return;
+    }
+    
     pokemonData.name = pokemonData.name.toLowerCase()
-    pokemonData.types = pokemonData.types.sort()
+    pokemonData.types.sort((a, b) => a-b)
+    pokemonData.speed = pokemonData.speed===''?null: pokemonData.speed
+    pokemonData.height = pokemonData.height===''?null: pokemonData.height
+    pokemonData.weight = pokemonData.weight===''?null: pokemonData.weight
+    console.log("PokemonData", pokemonData)
 
     axios.post('http://localhost:3001/pokemons', pokemonData)
-    .then(res => console.log("creado", res.data))
+    .then(res => {
+      console.log("creado", res.data)
+      clearPokemonDataState()
+    })
     .catch(err => console.log("error", err))
+
   }
 
   return (
     <div className={style.bg}>
       <form onSubmit={handleSubmit} className={style.form}>
         <h2>Create your pokemon</h2>
-        <div className={style.property}>
-          <label htmlFor="name">Name:</label>
-          <input name='name' id="name" type="text" autoComplete="off" required value={pokemonData.name} onChange={handleChange}/>
-          <p>{errors.name}</p>
+
+        <div className={style.propertyContainer}>
+          <div className={style.property}>
+          {/* <label htmlFor="name"></label> */}
+          <img src  ={pokemonData.image?pokemonData.image:PokemonDefaultImage} alt='PokeImage' onLoad={()=>validateImg(true)} onError={()=>validateImg(false)}/>
+            </div>
+        </div>
+        <div className={style.propertyContainer}>
+          <div className={style.property}>
+            <label htmlFor="name">Name*:</label>
+            <input name='name' id="name" type="text" autoComplete="off" required value={pokemonData.name} onChange={handleChange}/>
+          </div>
+          <p className={style.propertyError}>{errors.name}</p>
+        </div>
+        
+        
+        <div className={style.propertyContainer}>
+          <div className={style.property}>
+            <label htmlFor="image">Image*:</label>
+            <input name='image' id="image" type="text" autoComplete="off" required value={pokemonData.image} onChange={handleChange}/>
+          </div>
+          <p className={style.propertyError}>{errors.image}</p>
+        </div>
+        
+        <div className={style.propertyContainer}>
+          <div className={style.property}>
+            <label htmlFor="health">Health*:</label>
+            <input name='health' id="health" type="number" required value={pokemonData.health} onChange={handleChange}/>
+          </div>
+          <p className={style.propertyError}>{errors.health}</p>
         </div>
 
-        <div className={style.property}>
-          <label htmlFor="image">Image:</label>
-          <input name='image' id="image" type="text" autoComplete="off" required value={pokemonData.image} onChange={handleChange}/>
-          <p>{errors.image}</p>
+        <div className={style.propertyContainer}>
+          <div className={style.property}>
+            <label htmlFor="attack">Attack*:</label>
+            <input name='attack' id="attack" type="number" required value={pokemonData.attack} onChange={handleChange}/>
+          </div>
+          <p className={style.propertyError}>{errors.attack}</p>
         </div>
 
-        <div className={style.property}>
-          <label htmlFor="health">Health:</label>
-          <input name='health' id="health" type="number" required value={pokemonData.health} onChange={handleChange}/>
-          <p>{errors.health}</p>
+        <div className={style.propertyContainer}>
+          <div className={style.property}>
+            <label htmlFor="defense">Defense*:</label>
+            <input name='defense' id="defense" type="number" required value={pokemonData.defense} onChange={handleChange}/>
+          </div>
+          <p className={style.propertyError}>{errors.defense}</p>
         </div>
 
-        <div className={style.property}>
-          <label htmlFor="attack">Attack:</label>
-          <input name='attack' id="attack" type="number" required value={pokemonData.attack} onChange={handleChange}/>
-          <p>{errors.attack}</p>
+        <div className={style.propertyContainer}>
+          <div className={style.property}>
+            <label htmlFor="speed">Speed:</label>
+            <input name='speed' id="speed" type="number" value={pokemonData.speed} onChange={handleChange}/>
+          </div>
+          <p className={style.propertyError}>{errors.speed}</p>
         </div>
 
-        <div className={style.property}>
-          <label htmlFor="defense">Defense:</label>
-          <input name='defense' id="defense" type="number" required value={pokemonData.defense} onChange={handleChange}/>
-          <p>{errors.defense}</p>
+        <div className={style.propertyContainer}>
+          <div className={style.property}>
+            <label htmlFor="height">Height:</label>
+            <input name='height' id="height" type="number" value={pokemonData.height} onChange={handleChange}/>
+          </div>
+          <p className={style.propertyError}>{errors.height}</p>
         </div>
 
-        <div className={style.property}>
-          <label htmlFor="speed">Speed:</label>
-          <input name='speed' id="speed" type="number" required value={pokemonData.speed} onChange={handleChange}/>
-          <p>{errors.speed}</p>
-        </div>
-
-        <div className={style.property}>
-          <label htmlFor="height">Height:</label>
-          <input name='height' id="height" type="number" required value={pokemonData.height} onChange={handleChange}/>
-          <p>{errors.height}</p>
-        </div>
-
-        <div className={style.property}>
-          <label htmlFor="weight">Weight:</label>
-          <input name='weight' id="weight" type="number" required value={pokemonData.weight} onChange={handleChange}/>
-          <p>{errors.weight}</p>
+        <div className={style.propertyContainer}>
+          <div className={style.property}>
+            <label htmlFor="weight">Weight:</label>
+            <input name='weight' id="weight" type="number" value={pokemonData.weight} onChange={handleChange}/>
+          </div>
+          <p className={style.propertyError}>{errors.weight}</p>
         </div>
 
         <div >
           <p className={style.typesTitle}>Select Types:</p>
+          <p className={style.propertyError}>{errors.types}</p>
           <div className={style.typesContent}>
             {types.map((t) => {
               return (
@@ -146,6 +213,7 @@ const Form = () => {
               );
             })}
           </div>
+          <p className={style.propertyError}>{errors.types}</p>
         </div>
 
         <button type="submit" className={style.btn}>Create Pokemon</button>

@@ -100,7 +100,7 @@
 
 ### **📌 DISEÑO**
 
--  Intenta utilizar estilos uniformes en todo la SPA. Puedes buscar una [**paleta de colores**](https://coolors.co/) y mantenerla.
+-  Intenta utilizar estilos uniformes en todo la página. Puedes buscar una [**paleta de colores**](https://coolors.co/) y mantenerla.
 -  Es recomendable utilizar la misma fuente y el mismo tamaño de letra, botones con el mismo estilo y color para los que realizan la misma acción (por ejemplo, borrar).
 -  No se permitirá utilizar librerías externas para aplicar estilos a la aplicación.
 -  Los elementos deben estar centrados y estilizados.

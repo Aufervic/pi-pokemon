@@ -76,7 +76,6 @@
   /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
   /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   /* font-family: 'Courier New', Courier, monospace; */
-
   
   /*elegido*/
   font-family: 'Concert One', cursive;
@@ -89,18 +88,15 @@
   /* font-family: 'Alegreya Sans SC', sans-serif; */
 
   font-size: 32px;
-  /* font-weight: bold; */
   margin-left: 5px;
-  /* padding-left: 5px; */
-
   padding-bottom: 20px;
-  
 }
 
 .img {
   height: 160px;
   width: 160px;
   background: radial-gradient(circle, rgb(238, 238, 238) 0%, rgb(238, 238, 238) 70%, rgba(238, 238, 238, 0) 71%);
+  border-radius: 15px;
   /* border-radius: 50%;
   border: 5px solid #272133; */
 }
