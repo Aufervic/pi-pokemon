@@ -9,7 +9,9 @@ function App() {
   return (
     <div className="App">
    
+      {/* Provoca doble*/}
       {location.pathname !== '/' && <NavBar/>}
+      
       <Route exact path='/' component={Landing} />
       <Route path='/home' render={()=> <Home/>}/>
       <Route path='/detail/:id' render={()=> <Detail/>}/>

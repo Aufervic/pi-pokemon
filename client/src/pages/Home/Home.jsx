@@ -1,27 +1,16 @@
-import { useEffect, useState } from 'react'
-import { connect, useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { connect } from 'react-redux'
 import {Cards, FilterBar, Paginator} from '../../components'
-import { getPokemons, getTypes } from '../../redux/actions'
+
 
 const Home = ({pokemons}) => {
-  const dispatch = useDispatch()
-
+  
   // paginator
   const [page, setPage] = useState(1)
   // const [perPage, setPerPage] = useState(2) // datos por página
   const perPage = 2
   const pages = Math.ceil(pokemons.length / perPage) // si sale con decimal contar una página más
-
-
-
-  useEffect(()=>{
-    console.log("montando home")
-    dispatch(getPokemons())
-    dispatch(getTypes())
-    
-  }, [dispatch])
-
-  
+ 
   return (
     <div>
       <FilterBar/>
