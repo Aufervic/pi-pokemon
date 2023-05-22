@@ -5,6 +5,8 @@ import validate from './validation'
 import style from './Form.module.css'
 import Helper from '../../helpers/Helper'
 import PokemonDefaultImage from '../../assets/whos-that-pokemon.png'
+import {Modal} from '../../components'
+
 
 const Form = () => {
   const types = useSelector(state => state.types)
@@ -45,7 +47,19 @@ const Form = () => {
     setErrors(validate({
       ...pokemonData,
       [prop]: value
-    }))
+    }, errors.image))
+  }
+
+  const [modalConfig, setModalConfig] = useState({
+    isOpen: false,
+    type:'fail',
+    title: 'Oops!',
+    message: 'No deberías ver este mensaje si todo va bien'
+  })
+
+
+  const updateModal = (isOpen, type='', title='', message='') => {
+    setModalConfig({isOpen, type, title, message})
   }
 
   const handleChange = (event) => {
@@ -74,10 +88,16 @@ const Form = () => {
   }
 
   const validateImg = (isOk)=>{
+
     if(!isOk){
       setErrors({
         ...errors,
         image: 'Ingrese una url de imagen válida'
+      })
+    }else if(pokemonData.name){
+      setErrors({
+        ...errors,
+        image: ''
       })
     }
   }
@@ -97,6 +117,7 @@ const Form = () => {
 
     if(Object.keys(errors).length) {
       console.log("NO PODRAS CREAR PORQUE TIENES ERRORES", errors)
+      updateModal(true, 'alert', 'Oops!', 'No se puede crear Pokemon, ingresa bien los datos')
       return;
     }
     
@@ -111,13 +132,17 @@ const Form = () => {
     .then(res => {
       console.log("creado", res.data)
       clearPokemonDataState()
+      updateModal(true, 'success', 'Great!', 'Pokemon creado con éxito')
     })
-    .catch(err => console.log("error", err))
+    .catch(err => {
+      updateModal(true, 'fail', 'Oops!', 'No se pudo crear el pokemon')
+    })
 
   }
 
   return (
     <div className={style.bg}>
+      
       <form onSubmit={handleSubmit} className={style.form}>
         <h2>Create your pokemon</h2>
 
@@ -218,6 +243,7 @@ const Form = () => {
 
         <button type="submit" className={style.btn}>Create Pokemon</button>
       </form>
+      <Modal modalConfig={modalConfig} onClose={()=>{updateModal(false)}}/>
     </div>
   )
 }

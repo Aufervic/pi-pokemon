@@ -1,4 +1,4 @@
-export default function validate(pokemonData) {
+export default function validate(pokemonData, errImage) {
   // const regesImageURL = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/
   // const regesImageURL = /\.(jpg|jpeg|png|webp|avif|gif|svg)$/
   const regexpName = /^[A-Z]+$/i
@@ -17,7 +17,9 @@ export default function validate(pokemonData) {
   }
 
   // IMAGE
-  if(!pokemonData.image){// *
+  if(errImage){
+    errors.image = errImage
+  }else if(!pokemonData.image){// *
     errors.image = 'Ingrese url de imagen'
   }// Tambien se valida en el form
 
