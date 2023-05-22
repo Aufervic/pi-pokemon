@@ -88,8 +88,7 @@ const TYPE_COLORS = {
     "unknown":["#gainsboro", "#fc0c0b"],
     "shadow":["#26de81", "#454545"],
 }
-const getTypeColors = (types, pos) =>{
-  if(!pos) pos = 0
+const getTypeColors = (types, pos=0) =>{
   if(types.length>1){
     return [TYPE_COLORS[types[0].name][pos], TYPE_COLORS[types[1].name][pos] ]
   }

@@ -22,7 +22,7 @@ const Modal = ({modalConfig, onClose}) => {
     <div className="modal-container" style={{display: modalConfig.isOpen?'grid': 'none'}}>
       <div className="modal-body">
         <button className="modal-close" onClick={onClose}>X</button>
-        <img src={getImage(modalConfig.type)} alter='icon' className='modal-icon' width='60px'/>
+        <img src={getImage(modalConfig.type)} alt='icon' className='modal-icon' width='60px'/>
         <p className='modal-title'>{modalConfig.title}</p>
         <p className='modal-content'>{modalConfig.message}</p>
         <div className='btns-container'>

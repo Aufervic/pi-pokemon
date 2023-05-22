@@ -5,7 +5,6 @@ import IconAttack from '../../assets/icon-attack.png'
 
 const Card = ({id, name, image, attack, types}) =>{
 
-  // const imgsTypes = Helper.getImgType()
   let shortTypes = types.length > 4 ? types.slice(0,4): types
   const colors = Helper.getTypeColors(shortTypes)
   const addStyle=(colors)=>{

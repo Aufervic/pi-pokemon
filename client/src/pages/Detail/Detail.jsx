@@ -16,6 +16,9 @@ const Detail = () => {
         setPokemon(data);
       }
     });
+    return ()=>{
+      setPokemon({})
+    }
   }, [id]);
 
 
