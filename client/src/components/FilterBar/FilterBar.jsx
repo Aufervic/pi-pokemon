@@ -1,18 +1,22 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  filterPokemonsAPIOrDB,
-  filterPokemonsByType,
+  filterData,
   getPokemonByName,
-  orderPokemons,
 } from "../../redux/actions";
 import style from './FilterBar.module.css'
 
 
-const FilterBar = () => {
-  const types = useSelector((state) => state.types);
-  let [name, setName] = useState("");
+const FilterBar = ({setPage}) => {
   const dispatch = useDispatch();
+  const types = useSelector((state) => state.types);
+
+  let [name, setName] = useState("");
+  const [filters, setFilters] = useState({
+    order: 'default',
+    origin: 'all',
+    type: 'default'
+  })
 
   const handleChangeSearch = (event) => {
     setName(event.target.value);
@@ -22,25 +26,12 @@ const FilterBar = () => {
     dispatch(getPokemonByName(_name.toLowerCase()));
   };
 
-  // en fav
-  const handleOrder = (event) => {
-    dispatch(orderPokemons(event.target.value));
-    // setAux(!aux)
+  const handleChange = (event) => {
+    setFilters({...filters, [event.target.name]: event.target.value})
+
+    dispatch(filterData({...filters, [event.target.name]: event.target.value}))
   };
 
-  const handleFilter = (event) => {
-    switch (event.target.name) {
-      case "filterDBAPI":
-        dispatch(filterPokemonsAPIOrDB(event.target.value));
-        break;
-      case "filterByTypes":
-        console.log("click", event.target.name);
-        dispatch(filterPokemonsByType(event.target.value));
-        break;
-      default:
-        return;
-    }
-  };
 
   return (
     <div className={style.container}>
@@ -52,7 +43,7 @@ const FilterBar = () => {
       <div className={style.filterBar}>
         {/* FALTA Ordenar Ascendente/Descendente por orden alfabético y por ataque*/}
         <label htmlFor="order">Order:</label>
-        <select name="order" id="3" onChange={handleOrder}>
+        <select name="order" id="3" onChange={handleChange}>
           <option value="default">Default</option>
           <option value="ascName">A-Z</option>
           <option value="desName">Z-A</option>
@@ -61,16 +52,16 @@ const FilterBar = () => {
         </select>
 
         {/* Filtrar por origen API/BD */}
-        <label htmlFor="filterDBAPI">By Origin:</label>
-        <select name="filterDBAPI" id="2" onChange={handleFilter}>
+        <label htmlFor="origin">By Origin:</label>
+        <select name="origin" id="2" onChange={handleChange}>
           <option value="all">All</option>
           <option value="db">Database</option>
           <option value="api">API</option>
         </select>
 
         {/* Filtrar por tipo*/}
-        <label htmlFor="filterByTypes">By type:</label>
-        <select name="filterByTypes" id="1" onChange={handleFilter}>
+        <label htmlFor="type">By type:</label>
+        <select name="type" id="1" onChange={handleChange}>
           <option value="default">Default</option>
           {types.map((t) => {
             return (

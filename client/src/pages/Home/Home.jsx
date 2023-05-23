@@ -11,6 +11,8 @@ const Home = ({pokemons}) => {
   const perPage = 2
   const pages = Math.ceil(pokemons.length / perPage) // si sale con decimal contar una página más
  
+  
+
   return (
     <div>
       <FilterBar/>

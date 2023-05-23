@@ -1,8 +1,13 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import style from './Paginator.module.css'
 
 const Paginator = ({page, setPage, pages, perPage, total}) =>  {
   const [numPage, setNumPage] = useState(1)
+
+  useEffect(()=>{
+    setNumPage(1)
+    setPage(1)
+  }, [pages, setPage])
 
   const handleChange = (event) => {
     let num = event.target.value
