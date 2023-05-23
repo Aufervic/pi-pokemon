@@ -22,8 +22,8 @@ export const getTypes = () => {
 
 export const getPokemonByName = (name) => {
   return async (dispatch) =>{
-    const {data} = await axios.get(`http://localhost:3001/pokemons/name?name=${name}`)
-    return dispatch({type: GET_POKEMON_BY_NAME, payload: data})
+      const {data} = await axios.get(`http://localhost:3001/pokemons/name?name=${name}`)
+      return dispatch({type: GET_POKEMON_BY_NAME, payload: data})
   }
 }
 
