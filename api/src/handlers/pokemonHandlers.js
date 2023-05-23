@@ -36,29 +36,35 @@ const getPokemonByNameHandler = async(req, res) => {
 
   try {
     const pokemon = await getPokemonByName(name)
+    if(!pokemon) throw {myMessage: `'${name}' not found`}
     res.status(200).json(pokemon)
 
   } catch (error) {
-    if(error.code === 'ERR_BAD_REQUEST')
-      return res.status(404).json({error: `'${name}' not found`, code: 1})
-    
-    res.status(500).json({error: error.message, code: 0})
+    const {myMessage} = error
+    if(!myMessage){
+      return res.status(500).json({error: 'something went wrong', code: 0})
+    }
+
+    res.status(404).json({error: myMessage, code: 1})
   }
 }
+
 
 const createPokemonHandler = async(req, res) => {
   const {name, image, health, attack, defense, speed, height, weight, types} = req.body
 
   try {
-    // debe por lo menos relacionarse con 2 tipos
-    if(types.length < 2) throw new Error('El pokemon debe tener al menos 2 tipos')
-
-    
     const newPokemon = await createPokemon(name.toLowerCase(), image, health, attack, defense, speed, height, weight, types)
 
     res.status(200).json(newPokemon)
   } catch (error) {
-    res.status(500).json({error: error.message})
+    const {myMessage} = error
+    if(!myMessage){
+      return res.status(500).json({error: 'something went wrong', code: 0})
+    }
+    
+    // de todas maneras devuelve con 404 aunque le pongas 500
+    return res.status(404).json({error: myMessage, code: 1})
   }
 }
 
@@ -83,8 +89,6 @@ const testPokemonHandler = async(req, res) => {
   const {id} = req.params
 
   try {
-    // debe por lo menos relacionarse con 2 tipos
-   
     const result = await testPokemon(id)
 
     res.status(200).json(result)

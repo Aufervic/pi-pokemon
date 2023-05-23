@@ -63,5 +63,4 @@ const extractPokemonDetail = (pokemonAPI) => {
 module.exports = {
   extractPokemon,
   extractPokemonDetail,
-  
 }

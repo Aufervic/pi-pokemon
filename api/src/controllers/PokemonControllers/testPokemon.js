@@ -7,7 +7,6 @@ const {API_URL} = process.env;
 
 
 const testPokemon = async (id)=>{
-  
   const types = await Type.findAll({where: {id: [1, 2]}})
 
   return types

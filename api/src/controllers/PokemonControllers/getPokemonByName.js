@@ -19,9 +19,12 @@ const _getPokemonsByNameOfDB = async (name) => {
 }
 
 const _getPokemonsByNameOfAPI = async (name) => {
-  const {data} = await axios.get(`${API_URL}/${name}`)
-
-  return Extractors.extractPokemonDetail(data)
+  try{
+    const {data} = await axios.get(`${API_URL}/${name}`)
+    return Extractors.extractPokemonDetail(data)
+  }catch(err){
+    return null
+  }
 }
 
 const getPokemonByName = async (name) => {

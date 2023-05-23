@@ -133,7 +133,6 @@ const Form = () => {
     event.preventDefault();
 
     if (isFormInvalid()) {
-      console.log("NO PODRAS CREAR PORQUE TIENES ERRORES", errors);
       updateModal(
         true,
         "alert",
@@ -148,18 +147,17 @@ const Form = () => {
     pokemonData.speed = pokemonData.speed === "" ? null : pokemonData.speed;
     pokemonData.height = pokemonData.height === "" ? null : pokemonData.height;
     pokemonData.weight = pokemonData.weight === "" ? null : pokemonData.weight;
-    console.log("PokemonData", pokemonData);
 
     axios
       .post("http://localhost:3001/pokemons", pokemonData)
       .then((res) => {
-        console.log("creado", res.data);
         clearPokemonDataState();
         dispatch(getPokemons())
-        updateModal(true, "success", "Great!", "Pokemon creado con éxito");
+        updateModal(true, "success", "Great!", "pokemon successfully created");
       })
       .catch((err) => {
-        updateModal(true, "fail", "Oops!", "No se pudo crear el pokemon");
+        const { error } = err.response.data;
+        updateModal(true, "fail", "Oops!", error);
       });
   };
 

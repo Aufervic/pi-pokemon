@@ -13,11 +13,11 @@ const FilterBar = ({ setPage }) => {
     origin: "all",
     type: "default",
   });
-  const [errorState, setErrorState] = useState("");
+  const [responseErrorState, setResponseErrorState] = useState("");
 
   const handleChangeSearch = (event) => {
     setName(event.target.value);
-    setErrorState("");
+    setResponseErrorState("");
   };
 
   const onSearch = (_name) => {
@@ -31,9 +31,9 @@ const FilterBar = ({ setPage }) => {
   const handleError = (err) => {
     const { error, code } = err;
     if (code === 1) {
-      setErrorState(error);
+      setResponseErrorState(error);
     } else {
-      setErrorState("Algo salió mal");
+      setResponseErrorState("something went wrong");
     }
   };
 
@@ -47,7 +47,7 @@ const FilterBar = ({ setPage }) => {
 
   return (
     <>
-      {errorState && <div className={style.error}>{errorState}</div>}
+      {responseErrorState && <div className={style.error}>{responseErrorState}</div>}
       <div className={style.container}>
         {/* Search Bar */}
         <div className={style.searchBar}>
