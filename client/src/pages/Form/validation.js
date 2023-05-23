@@ -91,5 +91,6 @@ export default function validate(pokemonData, errImage) {
      errors.types = 'Debes seleccionar 2 tipos como mínimo'
   }
   
+
   return errors
 }

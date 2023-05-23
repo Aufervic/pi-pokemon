@@ -144,7 +144,14 @@
   margin: 40px auto 10px;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 .btn:hover{
   background-color: #29bb4b;
+}
+
+.btn[disabled] {
+  background-color: #79d68f;
+  cursor: no-drop;
+
 }
