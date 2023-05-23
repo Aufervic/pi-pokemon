@@ -40,7 +40,7 @@ const getPokemonByNameHandler = async(req, res) => {
 
   } catch (error) {
     if(error.code === 'ERR_BAD_REQUEST')
-      return res.status(404).json({error: `'${name} not found'`, code: 1})
+      return res.status(404).json({error: `'${name}' not found`, code: 1})
     
     res.status(500).json({error: error.message, code: 0})
   }

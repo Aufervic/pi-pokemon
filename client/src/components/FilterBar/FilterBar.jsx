@@ -1,56 +1,53 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterData,
-  getPokemonByName,
-} from "../../redux/actions";
-import style from './FilterBar.module.css'
+import { filterData, getPokemonByName } from "../../redux/actions";
+import style from "./FilterBar.module.css";
 
-
-const FilterBar = ({setPage}) => {
+const FilterBar = ({ setPage }) => {
   const dispatch = useDispatch();
   const types = useSelector((state) => state.types);
 
   let [name, setName] = useState("");
   const [filters, setFilters] = useState({
-    order: 'default',
-    origin: 'all',
-    type: 'default'
-  })
-  const [errorState, setErrorState] = useState('')
+    order: "default",
+    origin: "all",
+    type: "default",
+  });
+  const [errorState, setErrorState] = useState("");
 
   const handleChangeSearch = (event) => {
     setName(event.target.value);
-    setErrorState('')
+    setErrorState("");
   };
 
   const onSearch = (_name) => {
-      dispatch(getPokemonByName(_name.toLowerCase()))
-      .catch((err)=>{
-        handleError(err.response.data)
-      });
+    if (!_name) return;
+
+    dispatch(getPokemonByName(_name.toLowerCase())).catch((err) => {
+      handleError(err.response.data);
+    });
   };
 
   const handleError = (err) => {
-    const {error, code} = err
-    if(code === 1){
-      setErrorState(error)
-    }else{
-      setErrorState('Algo salió mal')
+    const { error, code } = err;
+    if (code === 1) {
+      setErrorState(error);
+    } else {
+      setErrorState("Algo salió mal");
     }
-
-  }
-
-  const handleChange = (event) => {
-    setFilters({...filters, [event.target.name]: event.target.value})
-
-    dispatch(filterData({...filters, [event.target.name]: event.target.value}))
   };
 
+  const handleChange = (event) => {
+    setFilters({ ...filters, [event.target.name]: event.target.value });
+
+    dispatch(
+      filterData({ ...filters, [event.target.name]: event.target.value })
+    );
+  };
 
   return (
     <>
-      {errorState&&<div className={style.error}>{errorState}</div>}
+      {errorState && <div className={style.error}>{errorState}</div>}
       <div className={style.container}>
         {/* Search Bar */}
         <div className={style.searchBar}>
