@@ -7,88 +7,88 @@ export default function validate(pokemonData, errImage) {
 
   // NAME
   if(!pokemonData.name){// *
-    errors.name = 'El nombre es obligatorio'
+    errors.name = 'name cannot be null'
   }else if(pokemonData.name.indexOf(' ')>=0){
-    errors.name = 'El nombre no debe contener espacios'
+    errors.name = 'The name must not contain spaces'
   }else if(!regexpName.test(pokemonData.name)){// FALTA, caracteres especiales
-    errors.name = 'El nombre no debe contener caracteres especiales ni números'
+    errors.name = 'the name must not contain special characters or numbers'
   }else if(pokemonData.name.length > 11){
-    errors.name = 'El nombre supera los 11 caracteres'
+    errors.name = 'the name exceeds 11 characters'
   }
 
   // IMAGE
   if(errImage){
     errors.image = errImage
   }else if(!pokemonData.image){// *
-    errors.image = 'Ingrese url de imagen'
+    errors.image = 'image url cannot be null'
   }// Tambien se valida en el form
 
 
   // HEALTH
   if(pokemonData.health === ''){// *
-    errors.health = 'La Vida es obligatoria'
+    errors.health = 'you must enter a value for health'
   }else if(isNaN(pokemonData.health)){
-    errors.health = 'La Vida debe ser un número'
+    errors.health = 'health should be a number'
   }else if(pokemonData.health <= 0){
-    errors.health = 'La Vida debe ser mayor a cero'
+    errors.health = 'health must be greater than zero'
   }else if(pokemonData.health > 255){
-    errors.health = 'La Vida debe ser menor a 255  (blissey)'
+    errors.health = 'health should be less than 255  (blissey)'
   }
 
   // ATTACK
   if(pokemonData.attack === ''){// *
-    errors.attack = 'El Ataque es obligatorio'
+    errors.attack = 'you must enter a value for attack'
   }else if(isNaN(pokemonData.attack)){
-    errors.attack = 'El Ataque debe ser un número'
+    errors.attack = 'attack should be a number'
   }else if(pokemonData.attack <= 0){
-    errors.attack = 'El Ataque debe ser mayor a cero'
+    errors.attack = 'attack must be greater than zero'
   }else if(pokemonData.attack > 181){
-    errors.attack = 'El Ataque debe ser menor a 181 (kartana)'
+    errors.attack = 'attack should be less than 181 (kartana)'
   }
 
   // DEFENSE
   if(pokemonData.defense === ''){// *
-    errors.defense = 'La Defenza es obligatoria'
+    errors.defense = 'you must enter a value for defense'
   }else 
   if(isNaN(pokemonData.defense)){
-    errors.defense = 'La Defenza debe ser un número'
+    errors.defense = 'defense should be a number'
   }else if(pokemonData.defense <= 0){
-    errors.defense = 'La Defenza debe ser mayor a cero'
+    errors.defense = 'defense must be greater than zero'
   }else if(pokemonData.defense > 230){
-    errors.defense = 'La Defenza debe ser menor a 230 (shuckle)'
+    errors.defense = 'defense should be less than 230 (shuckle)'
   }
 
 
   // SPEED
   if(isNaN(pokemonData.speed)){
-    errors.speed = 'La Velocidad debe ser un número'
+    errors.speed = 'speed should be a number'
   }else if(pokemonData.speed < 0){
-    errors.speed = 'La Velocidad no puede ser negativa'
+    errors.speed = 'speed cannot be negative'
   }else if(pokemonData.speed > 200){
-    errors.speed = 'La Velocidad debe ser menor a 200 (regieleki)'
+    errors.speed = 'speed must be less than 200 (regieleki)'
   }
 
   // HEIGHT
   if(isNaN(pokemonData.height)){
-    errors.height = 'La Altura debe ser un número'
+    errors.height = 'height should be a number'
   }else if(pokemonData.height < 0){
-    errors.height = 'La Altura no puede ser negativa'
+    errors.height = 'height cannot be negative'
   }else if(pokemonData.height > 145){
-    errors.height = 'La Altura debe ser menor a 145 (wailord)'
+    errors.height = 'height must be less than 145 (wailord)'
   }
 
   // WEIGHT
   if(isNaN(pokemonData.weight)){
-    errors.weight = 'El Peso debe ser un número'
+    errors.weight = 'weight should be a number'
   }else  if(pokemonData.weight < 0){
-    errors.weight = 'El Peso no puede ser negativa'
+    errors.weight = 'weight cannot be negative'
   }else if(pokemonData.weight > 9999){
-    errors.weight = 'El Peso debe ser menor a 9 999 (cosmoem)'
+    errors.weight = 'weight must be less than 9 999 (cosmoem)'
   }
 
   // TYPES
   if(pokemonData.types.length < 2){
-     errors.types = 'Debes seleccionar 2 tipos como mínimo'
+     errors.types = 'you must select at least 2 types'
   }
   
 

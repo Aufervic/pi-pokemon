@@ -1,88 +1,90 @@
+
+
 const validatePokemon = ({name, image, health, attack, defense, speed, height, weight, types})=>{
   const regexpName = /^[A-Z]+$/i
 
   // NAME
   if(!name){// *
-    return 'El nombre es obligatorio'
+    return 'name cannot be null'
   }else if(name.indexOf(' ')>=0){
-    return 'El nombre no debe contener espacios'
+    return 'the name must not contain spaces'
   }else if(!regexpName.test(name)){// FALTA, caracteres especiales
-    return 'El nombre no debe contener caracteres especiales ni números'
+    return 'the name must not contain special characters or numbers'
   }else if(name.length > 11){
-    return'El nombre supera los 11 caracteres'
+    return'the name exceeds 11 characters'
   }
 
   // IMAGE
   if(!image){// *
-    return 'Ingrese url de imagen'
+    return 'image url cannot be null'
   }
 
 
   // HEALTH
   if(health === ''){// *
-    return 'La Vida es obligatoria'
+    return 'you must enter a value for health'
   }else if(isNaN(health)){
-    return 'La Vida debe ser un número'
+    return 'health should be a number'
   }else if(health <= 0){
-    return 'La Vida debe ser mayor a cero'
+    return 'health must be greater than zero'
   }else if(health > 255){
-    return 'La Vida debe ser menor a 255  (blissey)'
+    return 'health should be less than 255  (blissey)'
   }
 
   // ATTACK
   if(attack === ''){// *
-    return 'El Ataque es obligatorio'
+    return 'you must enter a value for attack'
   }else if(isNaN(attack)){
-    return 'El Ataque debe ser un número'
+    return 'attack should be a number'
   }else if(attack <= 0){
-    return 'El Ataque debe ser mayor a cero'
+    return 'attack must be greater than zero'
   }else if(attack > 181){
-    return 'El Ataque debe ser menor a 181 (kartana)'
+    return 'attack should be less than 181 (kartana)'
   }
 
   // DEFENSE
   if(defense === ''){// *
-    return 'La Defenza es obligatoria'
+    return 'you must enter a value for defense'
   }else 
   if(isNaN(defense)){
-    return 'La Defenza debe ser un número'
+    return 'defense should be a number'
   }else if(defense <= 0){
-    return 'La Defenza debe ser mayor a cero'
+    return 'defense must be greater than zero'
   }else if(defense > 230){
-    return 'La Defenza debe ser menor a 230 (shuckle)'
+    return 'defense should be less than 230 (shuckle)'
   }
 
 
   // SPEED
   if(isNaN(speed)){
-    return 'La Velocidad debe ser un número'
+    return 'speed should be a number'
   }else if(speed < 0){
-    return 'La Velocidad no puede ser negativa'
+    return 'speed cannot be negative'
   }else if(speed > 200){
-    return 'La Velocidad debe ser menor a 200 (regieleki)'
+    return 'speed must be less than 200 (regieleki)'
   }
 
   // HEIGHT
   if(isNaN(height)){
-    return 'La Altura debe ser un número'
+    return 'height should be a number'
   }else if(height < 0){
-    return 'La Altura no puede ser negativa'
+    return 'height cannot be negative'
   }else if(height > 145){
-    return 'La Altura debe ser menor a 145 (wailord)'
+    return 'height must be less than 145 (wailord)'
   }
 
   // WEIGHT
   if(isNaN(weight)){
-    return 'El Peso debe ser un número'
+    return 'weight should be a number'
   }else  if(weight < 0){
-    return 'El Peso no puede ser negativa'
+    return 'weight cannot be negative'
   }else if(weight > 9999){
-    return 'El Peso debe ser menor a 9 999 (cosmoem)'
+    return 'weight must be less than 9 999 (cosmoem)'
   }
 
   // TYPES
   if(types.length < 2){
-     return 'Debes seleccionar 2 tipos como mínimo'
+     return 'you must select at least 2 types'
   }
   
 
