@@ -86,8 +86,12 @@ const Detail = () => {
         <div>
           <h2>{pokemon.name}</h2>
           <span id={style.number}>#{Helper.prettifyID(pokemon.id)}</span>
+          {/* <span id={style.number}>#{isNaN(pokemon.id)?pokemon.id:Helper.prettifyID(pokemon.id)}</span> */}
         </div>
-        <img src={pokemon.image} alt={pokemon.name} />
+        <div className={style.imageContainer}>
+          <img src={pokemon.image} alt={pokemon.name} />
+
+        </div>
         <div className={style.details}>
           <span>Health: {pokemon.health}</span>
           <div className={style.progressBarContainer} style={styleBarContainer('health')}>
