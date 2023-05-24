@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterData, getPokemonByName } from "../../redux/actions";
+import { filterData, filterDataByName, getPokemonByName } from "../../redux/actions";
 import style from "./FilterBar.module.css";
 
 const FilterBar = ({ setPage }) => {
@@ -18,6 +18,8 @@ const FilterBar = ({ setPage }) => {
   const handleChangeSearch = (event) => {
     setName(event.target.value);
     setResponseErrorState("");
+
+    dispatch(filterDataByName(event.target.value))
   };
 
   const onSearch = (_name) => {

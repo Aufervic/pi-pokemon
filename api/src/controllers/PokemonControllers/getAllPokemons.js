@@ -9,7 +9,7 @@ const {API_URL} = process.env;
 
 const _getAllPokemonsOfAPI = async (offset) =>{
   
-  const {data} = await axios.get(`${API_URL}?offset=${offset}&limit=${5}`)
+  const {data} = await axios.get(`${API_URL}?offset=${offset}&limit=${50}`)
   
   if(!data) throw new Error('No se lograron traer los pokemons')
   

@@ -1,0 +1,37 @@
+.aboutContainer{
+  width: 100%;
+  height: 100vh;
+  background-image: url('../../assets/charmander.gif');
+}
+
+.info {
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+
+  flex-flow: column wrap;
+  align-content: flex-end;
+  padding-top: 100px;
+  
+}
+
+.prop{
+  color: white;
+  text-align: center;
+  padding-right: 100px;
+  font-weight: bold;
+  padding-top: 24px;
+  text-shadow: 0px 2px 6px #000000;
+}
+
+.detail {
+  color: white;
+  
+  text-shadow: 0px 2px 6px #000000;
+  font-size: 16px;
+  padding-right: 100px;
+
+  text-align: center;
+}

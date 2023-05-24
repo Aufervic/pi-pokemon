@@ -1,4 +1,4 @@
-import {GET_POKEMONS, GET_POKEMON_BY_NAME, GET_TYPES, FILTERS } from "./actions";
+import {GET_POKEMONS, GET_POKEMON_BY_NAME, GET_TYPES, FILTERS, FILTER_BY_NAME } from "./actions";
 
 const initialState = {
   pokemons: [],
@@ -30,6 +30,19 @@ const reducer = (state = initialState, action) => {
         pokemons: filteredPokemons
       }
 
+    case FILTER_BY_NAME:
+      if(!action.payload){
+        return {
+          ...state,
+          pokemons: [...state.allPokemons]
+        }
+      }
+      let pokemonsToFilter = state.pokemons.length? state.pokemons: state.allPokemons
+      
+      return {
+        ...state,
+        pokemons: pokemonsToFilter.filter( p => p.name.includes(action.payload))
+      }
 
     default:
       return state

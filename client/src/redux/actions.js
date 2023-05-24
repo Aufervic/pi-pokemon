@@ -4,6 +4,7 @@ export const GET_POKEMONS = 'GET_POKEMONS'
 export const GET_TYPES = 'GET_TYPES'
 export const GET_POKEMON_BY_NAME = 'GET_POKEMON_BY_NAME'
 export const FILTERS = 'FILTERS'
+export const FILTER_BY_NAME = 'FILTER_BY_NAME'
 
 
 export const getPokemons = () => {
@@ -30,4 +31,9 @@ export const getPokemonByName = (name) => {
 
 export const filterData=(filters)=>{
   return {type: FILTERS, payload: filters}
+}
+
+
+export const filterDataByName=(name)=>{
+  return {type: FILTER_BY_NAME, payload: name}
 }
